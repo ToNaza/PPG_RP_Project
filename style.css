@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    }
+
+body {
+    background: #04004a;
+    background: linear-gradient(182deg, rgb(2, 0, 43) 0%, rgb(1, 0, 5) 100%);
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; 
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#flash-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Ховаємо під контент */
+    pointer-events: none; /* Щоб мишка клікала крізь фон */
+}
+
+
+.audio-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 9990;
+}
+
+/* Первая кнопка (Мут) остается независимым квадратом */
+.ctrl-btn {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.336); /* Делаем фон слегка светлым, как на макете */
+  border: none; /* Убираем белую рамку, если на макете её нет */
+  border-radius: 8px; /* Добавляем скругление углов под макет */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.ctrl-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Красный цвет при активном муте */
+.ctrl-btn.muted-active {
+  background-color: #ff0000;
+
+}
+
+
+/* ВТОРАЯ КНОПКА: Теперь сам контейнер выполняет роль кнопки и подложки */
+.volume-container {
+  display: flex;
+  align-items: center;
+  width: 45px; /* Изначально квадрат */
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.336); /* Одинаковый фон с первой кнопкой */
+  border-radius: 8px;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out; /* Плавное расширение всего блока вправо */
+}
+
+/* При наведении контейнер превращается в длинную плашку */
+.volume-container:hover {
+  width: 180px; /* Подбери ширину под длину ползунка */
+}
+
+/* Внутренняя кнопка-иконка внутри контейнера становится просто прозрачной картинкой */
+.music-btn {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Чтобы иконка не сжималась при анимации */
+}
+
+.music-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.music-btn{
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+/* Обертка ползунка внутри плашки */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
+  padding-right: 15px; /* Отступ справа внутри раскрытой плашки */
+}
+
+/* Плавно проявляем ползунок, когда контейнер раскрылся */
+.volume-container:hover .slider-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+#volume-slider {
+  width: 100px;
+  cursor: pointer;
+}
+
+
+
+.menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; 
+  z-index: 20; 
+  width: 90%; 
+  max-width: 400px;
+}
+
+
+.menu-title {
+  text-align: center;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.menu-btn {
+  position: relative;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  
+  /* ДОБАВЬ ЭТУ СТРОКУ: включает плавность для трансформации наклона */
+  transition: transform 0.2s ease-out; 
+  transform-style: preserve-3d;
+}
+
+
+.btn-img {
+  width: 60%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+.btn-text {
+  position: absolute;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  pointer-events: none; 
+  user-select: none;
+}
+
+.menu-title{
+    h1,h4{
+        font-family: 'Silkscreen';
+        color: rgba(255, 255, 255, 0.705);
+    }
+}
+
+/* Адаптивность под мобильные телефоны */
+@media (max-width: 600px) {
+  .menu {
+    gap: 20px;
+  }
+  .btn-text {
+    font-size: 16px; /* Уменьшаем шрифт на маленьких экранах */
+  }
+}
+
+#black_window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none; /* Чтобы не мешал кликам, когда скрыт */
+}
+
+
+.game_menu_modal{
+    width: 100%;
+    height: 100%;
+    z-index: 9989;
+    background-color: rgba(0, 0, 0, 0.63);
+    position: absolute;
+    backdrop-filter: blur(3px); 
+    display: none;
+
+  .gmm_block{
+      position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000b0;
+    backdrop-filter: blur(100px); 
+    min-width: 320px;
+    width: 40%;
+    min-height: 300px;
+    max-height: 400px;
+    border: rgba(255, 255, 255, 0.562) solid 3px;
+    border-radius: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .pvar{
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      margin: 15px;
+      font-family: 'Press Start 2P' ;
+      letter-spacing: 2px;
+    }
+    .pvar_info{
+      color: white;
+      text-align: center;
+      font-size: 11px;
+      margin: 15px;
+      letter-spacing: 2px;
+      font-family: 'Press Start 2P' ;
+    }
+
+    .btnblock{
+      text-align: center;
+      margin-top: 10px;
+
+      #var_muso,#var_anco{
+        width:230px;
+        height: 180px;
+        margin: 3px;
+        font-family: 'Press Start 2P' ;
+        color: white;
+        letter-spacing: 2px;
+        cursor: pointer;    
+        transition: 0.3s ease;
+        transition: transform 0.2s ease-out; 
+        transform-style: preserve-3d;
+      }
+      #var_zril{
+        width:140px;
+        height: 180px;
+        margin: 3px;
+        border-radius: 0px 35px 0px 35px;
+        background-color: rgb(68, 68, 68);
+        font-family: 'Press Start 2P' ;
+        color: white;
+        letter-spacing: 2px;
+        cursor: pointer;       
+        transition: 0.3s ease;
+        
+        transition: transform 0.2s ease-out; 
+        transform-style: preserve-3d;
+      }
+
+      @media (max-width: 1575px) {
+        #var_zril{
+        width:230px;
+      }
+      }
+
+      button{
+        line-height: 1.2; 
+      }
+
+      #var_muso{
+        border-radius: 35px 0px 35px 0px;
+        background-color: #ff3b3ba6;
+      }
+      #var_anco{
+        border-radius: 35px 0px 35px 0px;
+        background-color: #5d55ffc4;
+      }
+
+      #var_muso:hover {
+      background-color: #e48181; /* Новый цвет фона */
+      color: #000000;            /* Новый цвет текста */
+      }
+
+      #var_zril:hover {
+      background-color: #999494; /* Новый цвет фона */
+      color: #000000;            /* Новый цвет текста */
+      }
+
+      #var_anco:hover {
+      background-color: #8490f7; /* Новый цвет фона */
+      color: #000000;            /* Новый цвет текста */
+      }
+    }
+  }
+}
+
+
+
+
+.info_menu_modal{
+    width: 100%;
+    height: 100%;
+    z-index: 9989;
+    background-color: rgba(0, 0, 0, 0.63);
+    position: absolute;
+    backdrop-filter: blur(3px); 
+    display: none;
+
+  .imm_block{
+      position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000b0;
+    backdrop-filter: blur(100px); 
+    min-width: 320px;
+    width: 20%;
+    border: rgba(255, 255, 255, 0.562) solid 3px;
+    border-radius: 10px;
+    /* overflow-y: auto; */
+    -webkit-overflow-scrolling: touch;
+
+
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
+
+.menu-btn {
+  position: relative;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  
+  /* ДОБАВЬ ЭТУ СТРОКУ: включает плавность для трансформации наклона */
+  transition: transform 0.2s ease-out; 
+  transform-style: preserve-3d;
+}
+
+
+.btn-img {
+  width: 70%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+.btn-text {
+  position: absolute;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  pointer-events: none; 
+  user-select: none;
+}
+
+  }
+}
+
+
+
+
+.animate-flash-open {
+    animation: flashOpen 0.4s forwards ease-in-out;
+}
+
+@keyframes flashOpen {
+    0% { opacity: 0; pointer-events: auto; }
+    40% { opacity: 1; pointer-events: auto; } /* Проявился быстро (0.16s) */
+    60% { opacity: 1; pointer-events: auto; } /* Застыл на долю секунды */
+    100% { opacity: 0; pointer-events: none; } /* Исчез еще быстрее */
+}
+
+/* Анимация при закрытии: проявление и обычное плавное исчезновение */
+.animate-flash-close {
+    animation: flashClose 0.5s forwards ease-in-out;
+}
+
+@keyframes flashClose {
+    0% { opacity: 0; pointer-events: auto; }
+    30% { opacity: 1; pointer-events: auto; } /* Быстро проявился */
+    60% { opacity: 1; pointer-events: auto; } /* Пауза, пока скрывается модалка */
+    100% { opacity: 0; pointer-events: none; } /* Исчез */
+}

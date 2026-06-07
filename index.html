@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPG_War_RP</title>
+
+    <link rel="icon" href="./media/png-klev-club-p-planeta-png-34.png">
+    <link rel="stylesheet" href="./style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Jura&family=Kalam&family=Pacifico&family=Pixelify+Sans&family=Press+Start+2P&family=Roboto+Mono&family=Silkscreen&display=swap" rel="stylesheet">
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+
+    <script src="/script.js" defer></script>
+</head>
+
+    <body>
+<canvas id="flash-bg"></canvas>
+<div id="black_window"></div>
+
+<div class="audio-controls">
+  <button id="mute-btn" class="ctrl-btn muted-active">
+    <img id="mute-img" src="./media/sound-off-filled-svgrepo-com.svg" alt="Mute">
+  </button>
+  
+  <div class="volume-container">
+    <button class="ctrl-btn music-btn">
+      <img src="./media/sound-svgrepo-com.svg" alt="Music">
+    </button>
+    <div class="slider-wrapper">
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.1">
+    </div>
+  </div>
+</div>
+
+<audio id="bg-music" src="./audio/19. Anchordeep.mp3" loop></audio>
+
+
+<div class="menu">
+  <div class="menu-title">
+    <h1>PPG-WarFare</h1>
+    <h4>PR Project</h4>
+  </div>
+
+  <div class="menu-buttons">
+    
+    <button id="startgame" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+      <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+      <span class="btn-text">Играть</span>
+    </button>
+
+    <button id="info_open" title="Правила / История / Руководство" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+      <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+      <span class="btn-text">Информация</span>
+    </button>
+
+    <button title="Каталог всех «товаров»" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+      <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+      <span class="btn-text">Каталог</span>
+    </button>
+
+    <!-- <button class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+      <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+      <span class="btn-text">История</span>
+    </button> -->
+
+  </div>
+</div>
+
+<audio id="menu-hover-audio"></audio>
+<audio id="menu-click-audio"></audio>
+
+
+
+      <div class="game_menu_modal" id="gmm">
+        <div class="gmm_block">
+          <p class="pvar">Выберете фракцию</p>
+          <div class="btnblock">  
+            <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_muso">Государство <br> Musotopia <br> 0 человек</button>  
+            <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_zril">Зритель<br> 0 человек</button>  
+            <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_anco">Государство <br> Ancokrayna<br> 0 человек</button>  </div>
+          <p class="pvar_info">Выберайте с умом, после создания своего взвода вы не сможете сменить фракцию.</p>
+        </div>
+      </div>
+
+      <div class="info_menu_modal" id="imm">
+        <div class="imm_block">
+          <div class="btnblock">  
+            <div class="menu-buttons">
+            <button id="startgame" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+              <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+              <span class="btn-text">Правила</span>
+            </button>
+
+            <button title="Правила / История / Руководство" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+              <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+              <span class="btn-text">История</span>
+            </button>
+
+            <button title="Каталог всех «товаров»" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+              <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
+              <span class="btn-text">Руководство</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+    <p style=" color: white; position: fixed; bottom: 0; left: 50%;transform: translate(-50%, -50%);"><span id="app-version">Загрузка...</span></p>
+    </footer>
+    <script src="./version.js" defer></script>
+    </body>
+</html>
