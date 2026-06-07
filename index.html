@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPG_War_RP</title>
+    <title>PPG_Warfare</title>
 
     <link rel="icon" href="./media/png-klev-club-p-planeta-png-34.png">
     <link rel="stylesheet" href="./style.css">
@@ -39,8 +39,8 @@
 
 <div class="menu">
   <div class="menu-title">
-    <h1>PPG-WarFare</h1>
-    <h4>PR Project</h4>
+    <h1 title="PPG-(People Playground)">PPG-WarFare</h1>
+    <h4 title="RPG-(Role-Playing Game)">RPG Project</h4>
   </div>
 
   <div class="menu-buttons">
@@ -80,7 +80,7 @@
             <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_muso">Государство <br> Musotopia <br> 0 человек</button>  
             <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_zril">Зритель<br> 0 человек</button>  
             <button data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3" id="var_anco">Государство <br> Ancokrayna<br> 0 человек</button>  </div>
-          <p class="pvar_info">Выберайте с умом, после создания своего взвода вы не сможете сменить фракцию.</p>
+          <p class="pvar_info"> ! - После создания своего взвода вы не сможете сменить фракцию.</p>
         </div>
       </div>
 
@@ -93,12 +93,12 @@
               <span class="btn-text">Правила</span>
             </button>
 
-            <button title="Правила / История / Руководство" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+            <button id="lh_open" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
               <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
               <span class="btn-text">История</span>
             </button>
 
-            <button title="Каталог всех «товаров»" class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
+            <button class="menu-btn" data-hover-sound="./audio/gta-sa-menu.mp3" data-click-sound="./audio/gta-menu.mp3">
               <img src="./media/btnoff.png" class="btn-img" alt="Button Background">
               <span class="btn-text">Руководство</span>
             </button>
@@ -107,8 +107,25 @@
       </div>
     </div>
 
+    <div class="list_h" id="list_history">
+      <div class="lh_block">
+        <h1>История мира</h1>
+        <p style="color:rgb(15, 0, 153);">Руководство - нажмите на текст главы что б запустить запись, второе нажатие остановит запись.</p>
+        <h2>-Предыстория-</h2>
+        <p>Изначально существовало единое государство Mustania. С самого своего зарождения оно двигалось по пути демократии и толерантности. Однако ближе к середине своей истории в стране начал активно зарождаться социализм (точнее, его радикальные проявления). Большей части граждан это категорически не нравилось, но государство жестко подавляло противников новой утопии.
+Со временем в стране стал прогрессировать тоталитарный режим. Около половины граждан пали жертвой пропаганды и поддержали власть. Остальная часть населения, находившаяся дальше от столицы, активно протестовала. Людей сажали в тюрьмы, отправляли в концентрационные лагеря и подвергали массовым репрессиям. Результатом террора против собственного народа со стороны властей стала гражданская война, в ходе которой единая страна распалась на два враждующих государства — Musotopia и Ancokrayna.</p>
+        <h2>-Musotopia-</h2>
+        <p> (Мусотопия) — сторона красных, убежденные приверженцы идеологии национал-коммунизма. Ультралевые ценности: они желают, чтобы все жили в абсолютном равенстве и строго следовали курсу, установленному парламентом. Верят в «Большого Брата» и искренне верят в процветание своей «великой нации».
+Направление: Тоталитарный режим, контроль всех сфер жизни, ставка на количество.</p>
+        <h2>-Ancokrayna-</h2>
+        <p>(Анкокрайна) — сторона синих, более толерантное государство, основой ценностью которой стала демократия. Власти осознают тот факт, что социальное неравенство неизбежно, но стараются постоянно улучшать качество жизни граждан низшего и среднего класса. Большинство жителей страны не поддерживают религию.
+Направление: Свобода, мир и равенство, ставка на результат и качество.</p>
+
+</div>
+    </div>
+
     <footer>
-    <p style=" color: white; position: fixed; bottom: 0; left: 50%;transform: translate(-50%, -50%);"><span id="app-version">Загрузка...</span></p>
+    <p style=" color: white; position: fixed; bottom: 0; left: 50%;transform: translate(-50%, -50%); z-index: 9999;"><span id="app-version">Загрузка...</span></p>
     </footer>
     </body>
 </html>

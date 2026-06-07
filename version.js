@@ -1,5 +1,5 @@
 
-const currentVersion = "v0.1.1 Pre Alpha"; 
+const currentVersion = "v0.2 Pre Alpha"; 
 
 // Ждем, пока загрузится HTML-структура страницы
 document.addEventListener("DOMContentLoaded", () => {

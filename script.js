@@ -266,3 +266,21 @@ immModal.addEventListener('click', (e) => {
 });
 
 
+const lhOpenBtn = document.getElementById('lh_open');
+const listHistory = document.getElementById('list_history');
+
+// Открытие окна при нажатии на кнопку
+lhOpenBtn.addEventListener('click', () => {
+    listHistory.classList.add('active');
+});
+
+// Закрытие окна при клике мимо .lh_block (строго по фону #list_history)
+listHistory.addEventListener('click', (e) => {
+    // Если кликнули на внутренности, а не на сам фон — игнорируем
+    if (e.target.id !== 'list_history') {
+        return;
+    }
+    
+    // Убираем класс, и окно плавно уезжает вниз, а фон исчезает
+    listHistory.classList.remove('active');
+});
