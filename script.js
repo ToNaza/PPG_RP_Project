@@ -284,3 +284,50 @@ listHistory.addEventListener('click', (e) => {
     // Убираем класс, и окно плавно уезжает вниз, а фон исчезает
     listHistory.classList.remove('active');
 });
+
+
+// Переменная для хранения текущего играющего аудио
+let currentAudio = null;
+
+// Настройки: связываем id текста с путями к аудиофайлам
+const audioTracks = {
+    'histo': new Audio('audio/OzvukHistory.mp3'),
+    'muso': new Audio('audio/OzvukMuso.mp3'),
+    'anco': new Audio('audio/OzbukAncok.mp3') // Внимательно: тут "Ozbuk" через "b" по твоему скрину
+};
+
+audioTracks['histo'].volume = 0.5;
+audioTracks['muso'].volume = 0.5;
+audioTracks['anco'].volume = 0.5;
+
+// Перебираем все настроенные треки и вешаем на них события
+Object.keys(audioTracks).forEach(id => {
+    const textElement = document.getElementById(id);
+    
+    if (textElement) {
+        textElement.addEventListener('click', () => {
+            const selectedAudio = audioTracks[id];
+
+            // 1. Если кликнули по уже играющему треку -> останавливаем его
+            if (currentAudio === selectedAudio && !selectedAudio.paused) {
+                selectedAudio.pause();
+                selectedAudio.currentTime = 0; // Сбрасываем на начало
+                currentAudio = null;
+                return;
+            }
+
+            // 2. Если играет ДРУГОЙ трек -> глушим его перед запуском нового
+            if (currentAudio && currentAudio !== selectedAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // 3. Запускаем выбранный трек
+            selectedAudio.play()
+                .then(() => {
+                    currentAudio = selectedAudio;
+                })
+                .catch(error => console.error("Ошибка воспроизведения:", error));
+        });
+    }
+});
